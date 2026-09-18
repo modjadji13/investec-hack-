@@ -1,0 +1,24 @@
+{
+  "score": {
+    "final": 0.30961460282646663,
+    "main": 0.3711788535330833,
+    "H": 0.46866016860237786,
+    "size": 0.792,
+    "longevity": 0.0633576,
+    "C": 1980,
+    "Cmax": 2500,
+    "species": 5,
+    "counts": {
+      "Rose Bush": 404,
+      "Grass": 396,
+      "Lavender": 395,
+      "Oak Tree": 395,
+      "Dwarf Sunflower": 390
+    },
+    "animals": [],
+    "unlocked": 5
+  },
+  "rejected": 0,
+  "seconds": 3.0044451000285335,
+  "all_final_cells_and_ages_match": true
+}

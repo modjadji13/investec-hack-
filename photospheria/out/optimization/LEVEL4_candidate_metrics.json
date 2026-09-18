@@ -1,0 +1,105 @@
+{
+  "final": 0.4025125562632,
+  "H": 0.5175377590398286,
+  "C": 56969,
+  "Cmax": 60000,
+  "size": 0.9494833333333333,
+  "longevity": 0.046988875000000006,
+  "counts": {
+    "Grass": 7580,
+    "Crimson Vine": 7590,
+    "Dwarf Sunflower": 12126,
+    "Oak Tree": 9975,
+    "Crystal Cactus": 10589,
+    "Razorgrass": 9109
+  },
+  "species": 6,
+  "unlocked": 9,
+  "animals": [
+    "Barkskips",
+    "Canorals",
+    "Nectaris",
+    "Rhizorends",
+    "Verdelopes"
+  ],
+  "rejected": 0,
+  "params": {
+    "species": [
+      "Grass",
+      "Razorgrass",
+      "Crimson Vine",
+      "Crystal Cactus",
+      "Dwarf Sunflower",
+      "Oak Tree"
+    ],
+    "weights": [
+      1.0338876860553967,
+      1.0773573749364629,
+      1.4567781797083035,
+      1.38847108480026,
+      1.249597660897596,
+      1.1175060194321083
+    ],
+    "vertical": false,
+    "window": 99,
+    "strides": {
+      "Grass": 8,
+      "Razorgrass": 4,
+      "Crimson Vine": 30,
+      "Crystal Cactus": 7,
+      "Dwarf Sunflower": 5,
+      "Oak Tree": 9,
+      "Rose Bush": 24
+    },
+    "topup": 50,
+    "seed": 814,
+    "delays": {
+      "Crystal Cactus": 20,
+      "Dwarf Sunflower": 20
+    }
+  },
+  "sensitivity": {
+    "a0.5_k0.5": 0.44224079397085997,
+    "a0.5_k1.0": 0.41283475192738966,
+    "a0.5_k2.0": 0.404089662291973,
+    "a1.0_k0.5": 0.4319185983066703,
+    "a1.0_k1.0": 0.4025125562632,
+    "a1.0_k2.0": 0.39376746662778334,
+    "a2.0_k0.5": 0.4120597499398576,
+    "a2.0_k1.0": 0.3826537078963873,
+    "a2.0_k2.0": 0.37390861826097066,
+    "a3.0_k0.5": 0.39320410439637515,
+    "a3.0_k1.0": 0.36379806235290485,
+    "a3.0_k2.0": 0.3550529727174882
+  },
+  "unlock_log": [
+    [
+      701,
+      "UNLOCK",
+      [
+        "Crimson Vine"
+      ]
+    ],
+    [
+      713,
+      "UNLOCK",
+      [
+        "Crystal Cactus"
+      ]
+    ],
+    [
+      714,
+      "UNLOCK",
+      [
+        "Razorgrass"
+      ]
+    ],
+    [
+      745,
+      "UNLOCK",
+      [
+        "Bloodbloom"
+      ]
+    ]
+  ]
+}

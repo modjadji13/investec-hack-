@@ -1,0 +1,17 @@
+/.incoming-*/
+/.package-*/
+/.agents/
+/.codex/
+*.zip
+**/__pycache__/
+**/.pytest_cache/
+**/.analysis-deps/
+**/.test-deps/
+**/.venv/
+*.py[cod]
+*.nbc
+*.nbi
+.env
+.env.*
+!.env.example
+*.log

@@ -1,0 +1,94 @@
+{
+  "final": 0.40136470856738776,
+  "H": 0.5144423412340693,
+  "C": 6535,
+  "Cmax": 7000,
+  "size": 0.9335714285714286,
+  "longevity": 0.08574885714285714,
+  "counts": {
+    "Grass": 1008,
+    "Rose Bush": 767,
+    "Crimson Vine": 15,
+    "Dwarf Sunflower": 1789,
+    "Lavender": 844,
+    "Orange Blossom": 798,
+    "Oak Tree": 1296,
+    "Ironthorn Shrub": 18
+  },
+  "species": 8,
+  "unlocked": 11,
+  "animals": [
+    "Barkskips",
+    "Canorals",
+    "Grazeleths",
+    "Loamcrawlers",
+    "Nectaris",
+    "Rhizorends",
+    "Solwings",
+    "Verdelopes",
+    "Virexids"
+  ],
+  "rejected": 0,
+  "params": {
+    "augmentation": 50,
+    "direction": 2
+  },
+  "sensitivity": {
+    "a0.5_k0.5": 0.44869848361348785,
+    "a0.5_k1.0": 0.41479929731667653,
+    "a0.5_k2.0": 0.39980508691667654,
+    "a1.0_k0.5": 0.43526389486419914,
+    "a1.0_k1.0": 0.40136470856738776,
+    "a1.0_k2.0": 0.3863704981673878,
+    "a2.0_k0.5": 0.40974104546854917,
+    "a2.0_k1.0": 0.37584185917173785,
+    "a2.0_k2.0": 0.36084764877173786,
+    "a3.0_k0.5": 0.38591364249703886,
+    "a3.0_k1.0": 0.35201445620022753,
+    "a3.0_k2.0": 0.33702024580022755
+  },
+  "unlock_log": [
+    [
+      410,
+      "UNLOCK",
+      [
+        "Crimson Vine"
+      ]
+    ],
+    [
+      412,
+      "UNLOCK",
+      [
+        "Stone Reed"
+      ]
+    ],
+    [
+      420,
+      "UNLOCK",
+      [
+        "Orange Blossom"
+      ]
+    ],
+    [
+      421,
+      "UNLOCK",
+      [
+        "Blue Moss"
+      ]
+    ],
+    [
+      422,
+      "UNLOCK",
+      [
+        "Razorgrass"
+      ]
+    ],
+    [
+      427,
+      "UNLOCK",
+      [
+        "Ironthorn Shrub"
+      ]
+    ]
+  ]
+}

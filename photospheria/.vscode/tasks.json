@@ -1,0 +1,11 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    { "label": "Run tests", "type": "shell", "command": "python3 -m pytest",
+      "group": { "kind": "test", "isDefault": true }, "problemMatcher": [] },
+    { "label": "Solve Level 1", "type": "shell", "command": "python3 run.py solve",
+      "group": { "kind": "build", "isDefault": true }, "problemMatcher": [] },
+    { "label": "Level info", "type": "shell", "command": "python3 run.py info",
+      "problemMatcher": [] }
+  ]
+}

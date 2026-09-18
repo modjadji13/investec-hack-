@@ -1,0 +1,31 @@
+{
+  "score": {
+    "final": 0.4025125562631999,
+    "main": 0.4913934765789999,
+    "H": 0.5175377590398286,
+    "size": 0.9494833333333333,
+    "longevity": 0.046988875,
+    "C": 56969,
+    "Cmax": 60000,
+    "species": 6,
+    "counts": {
+      "Dwarf Sunflower": 12126,
+      "Crystal Cactus": 10589,
+      "Oak Tree": 9975,
+      "Razorgrass": 9109,
+      "Crimson Vine": 7590,
+      "Grass": 7580
+    },
+    "animals": [
+      "Barkskips",
+      "Canorals",
+      "Nectaris",
+      "Rhizorends",
+      "Verdelopes"
+    ],
+    "unlocked": 9
+  },
+  "rejected": 0,
+  "seconds": 66.80371150001884,
+  "matches_fast_evaluator_score": true
+}

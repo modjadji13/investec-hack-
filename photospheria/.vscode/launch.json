@@ -1,0 +1,41 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Info: what is in the level file",
+      "type": "debugpy", "request": "launch", "program": "${workspaceFolder}/run.py",
+      "args": ["info"], "console": "integratedTerminal", "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Tree: which species are reachable",
+      "type": "debugpy", "request": "launch", "program": "${workspaceFolder}/run.py",
+      "args": ["tree"], "console": "integratedTerminal", "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Watch: play the good strategy",
+      "type": "debugpy", "request": "launch", "program": "${workspaceFolder}/run.py",
+      "args": ["watch", "--quick"], "console": "integratedTerminal", "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Watch: play the BAD baseline (watch it fail)",
+      "type": "debugpy", "request": "launch", "program": "${workspaceFolder}/run.py",
+      "args": ["watch", "--naive"], "console": "integratedTerminal", "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Solve: tune and write out/submission.json",
+      "type": "debugpy", "request": "launch", "program": "${workspaceFolder}/run.py",
+      "args": ["solve"], "console": "integratedTerminal", "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Replay: write out/replay.html",
+      "type": "debugpy", "request": "launch", "program": "${workspaceFolder}/run.py",
+      "args": ["replay"], "console": "integratedTerminal", "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Debug the engine (break in engine.py)",
+      "type": "debugpy", "request": "launch", "program": "${workspaceFolder}/run.py",
+      "args": ["solve", "--quick"], "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}", "justMyCode": false
+    }
+  ]
+}
