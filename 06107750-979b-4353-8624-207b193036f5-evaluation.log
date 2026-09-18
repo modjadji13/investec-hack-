@@ -1,0 +1,22 @@
+[2026-09-12T13:13:46.458550+00:00] Started evaluation for submission 06107750-979b-4353-8624-207b193036f5 at 2026-09-12T13:13:46.458529+00:00
+[2026-09-12T13:13:46.458554+00:00] Validating JSON input...
+[2026-09-12T13:13:46.458557+00:00] Downloading submission input...
+[2026-09-12T13:13:46.949832+00:00] Input valid
+[2026-09-12T13:13:46.951247+00:00] PlantSim loading level
+[2026-09-12T13:13:46.954960+00:00] PlantSim loaded level (50x50, 500 ticks)
+[2026-09-12T13:13:46.960936+00:00] PlantSim input validation started
+[2026-09-12T13:13:46.962305+00:00] PlantSim input validation completed
+[2026-09-12T13:13:46.962344+00:00] PlantSim scheduled 1980 participant actions
+[2026-09-12T13:13:46.962348+00:00] PlantSim simulation started
+[2026-09-12T13:13:46.988310+00:00] Weather condition occurred: season changed to Summer on tick 100
+[2026-09-12T13:13:46.988569+00:00] Weather condition occurred: season changed to Autumn on tick 200
+[2026-09-12T13:13:46.988827+00:00] Weather condition occurred: season changed to Winter on tick 300
+[2026-09-12T13:13:46.989082+00:00] Weather condition occurred: season changed to Spring on tick 400
+[2026-09-12T13:13:47.786441+00:00] PlantSim simulation completed
+[2026-09-12T13:13:47.787369+00:00] PlantSim scoring started
+[2026-09-12T13:13:47.788843+00:00] PlantSim evaluation completed with score 0.222745
+[2026-09-12T13:13:47.799934+00:00] Setting score to 222745174
+[2026-09-12T13:13:47.800299+00:00] PlantSim statistics: {'score': 0.22274517363390636, 'main_score': 0.26664086704238293, 'longevity_score': 0.0471624, 'entropy': 0.3703345375588652, 'total_plants_planted_C': 1800, 'unlocked_plant_types': np.int64(5), 'density_factor': 0.72, 'number_of_plant_species_in_the_game': 31, 'c_max_or_grid_size': 2500, 'plant_counts': array([329., 171.,   0.,   0., 210.,  98.,   0.,   0.,   0.,   0.,   0.,
+       992.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,
+         0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.,   0.])}
+[2026-09-12T13:13:47.800307+00:00] Evaluation completed successfully
