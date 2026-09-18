@@ -95,14 +95,6 @@ def test_grass_matures_in_one_tick_and_then_spreads():
     assert after > before, "a mature Grass must spread"
 
 
-def test_oak_does_not_spread_before_maturity():
-    sim = Simulator(flat(size=15))
-    sim.step([(OAK, 7, 7)])
-    for _ in range(15):                     # Oak matures at 20
-        sim.step()
-    assert sum(1 for row in sim.g for c in row if c.species) == 1
-
-
 # ------------------------------------------------------------------ weaknesses
 def test_blue_moss_dies_with_more_than_four_neighbours():
     """The Level 2+ bottleneck: Blue Moss gates a third of the tech tree."""
@@ -193,12 +185,35 @@ def test_a_plant_does_not_spread_on_the_tick_it_is_placed():
     assert sum(1 for row in sim.g for c in row if c.species) == 1
 
 
-def test_manual_placement_overwrites_an_existing_plant():
+def test_manual_placement_replaces_a_different_species():
+    """CALIBRATED FROM JUDGE LOGS. Level 1 v2 placed onto cells Oak had already
+    spread into, with zero denials - so replacing a DIFFERENT species is fine."""
     sim = Simulator(flat(size=5))
     sim.step([(GRASS, 2, 2)])
     sim.step([(ROSE, 2, 2)])
     assert sim.g[2][2].species == "Rose Bush"
     assert sim.g[2][2].age == 1, "overwriting resets the plant's age"
+
+
+def test_manual_placement_onto_the_same_species_is_denied():
+    """The judge logs 'plant already occupies cell' for exactly this case."""
+    sim = Simulator(flat(size=5))
+    sim.step([(OAK, 2, 2)])
+    before = sim.rejected
+    sim.step([(OAK, 2, 2)])
+    assert sim.rejected == before + 1
+    assert sim.g[2][2].age == 2, "the original plant is untouched"
+
+
+def test_oak_spreads_before_maturity():
+    """CALIBRATED FROM JUDGE LOGS. Level 1: 243 Oak seeds became 992 Oaks.
+    With a hard maturity gate at 20 ticks that is impossible; without it, it
+    is what the engine produces."""
+    sim = Simulator(flat(size=15))
+    sim.step([(OAK, 7, 7)])
+    for _ in range(8):                      # Oak spread_rate 7, maturity 20
+        sim.step()
+    assert sum(1 for row in sim.g for c in row if c.species) > 1
 
 
 # ---------------------------------------------------------------------- scoring

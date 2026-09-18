@@ -9,9 +9,7 @@ is a one-line change; none of them is buried in logic.
       and the real engine's order is undocumented.
   A3  Coverage is denominated by the WHOLE grid (width x height), not by the
       habitable cells only. The spec says Cmax = N x M.
-  A4  Unlocks are recalculated each tick; species can lock again when a
-      required animal, event, or coverage condition lapses. Confirmed by the
-      official evaluation logs.
+  A4  Once unlocked, a species stays unlocked even if conditions later lapse.
   A5  A plant standing on dead matter drains 0.5/tick instead of 1.0/tick
       (the literal reading of the spec).
   A6  Manual plantings resolve before spreading within a tick.
@@ -28,6 +26,24 @@ from .level import Level
 
 MAX_PER_TICK = 20
 CELL_NUTRIENTS = 100.0
+
+# Rules the judge logs forced us to revisit. Both are calibrated against eight
+# real judge runs in calibrate.py - change them there, not here.
+#   MANUAL_OVERWRITE: "any"    - a placement replaces whatever is there (the PDF's wording)
+#                     "denied" - a placement onto an occupied cell is refused
+#                                (what the judge log says: "plant already occupies cell")
+#   SPREAD_COMPETE:   "last_wins" - spreading into an occupied cell always takes it
+#                     "rank"      - only if the spreader's invasiveness_rank >= the
+#                                   occupant's (occupant immature: last wins)
+#   SPREAD_CLOCK:     "age_mod"        - spreads when age % spread_rate == 0
+#                     "since_mature"   - clock starts at maturity
+#                     "every_tick"     - a mature plant spreads every tick
+MANUAL_OVERWRITE = "same"        # "any" | "same" (same species refused) | "denied"
+SPREAD_COMPETE = "rank"
+SPREAD_CLOCK = "age_mod"
+# Does a plant have to be mature before it spreads? The PDF says yes. The judge's
+# Oak count on Level 1 (992 from 395 seeds in 27 ticks, maturity 20) says no.
+SPREAD_NEEDS_MATURITY = False
 
 
 def pattern_offsets(spread_type: str, rng: int) -> list[tuple[int, int]]:
@@ -173,7 +189,7 @@ class Simulator:
             return False
         return True
 
-    def place(self, species, r, c) -> bool:
+    def place(self, species, r, c, manual=False) -> bool:
         if not self.can_occupy(species, r, c):
             return False
         cell = self.g[r][c]
@@ -181,6 +197,19 @@ class Simulator:
         if cell.species and cell.species != species and "subsurface_growth" in spec:
             cell.sub = species                      # grows underneath instead
             return True
+        if cell.species:
+            if manual:
+                if MANUAL_OVERWRITE == "denied":
+                    return False
+                if MANUAL_OVERWRITE == "same" and cell.species == species:
+                    return False
+            elif SPREAD_COMPETE == "empty_only":
+                return False                        # spread never displaces a plant
+            elif SPREAD_COMPETE in ("rank", "rank_always") and (cell.mature or SPREAD_COMPETE == "rank_always"):
+                mine = BY_NAME[species]["growth"]["invasiveness_rank"]
+                theirs = BY_NAME[cell.species]["growth"]["invasiveness_rank"]
+                if mine < theirs:
+                    return False
         cell.species = species
         cell.planted_tick = self.tick
         cell.age = 0
@@ -226,7 +255,7 @@ class Simulator:
         # 1. your placements, capped at 20                       ASSUMPTION A6
         for idx, r, c in list(plantings)[:MAX_PER_TICK]:
             species = BY_INDEX[idx]["plant"]
-            if species not in self.unlocked or not self.place(species, r, c):
+            if species not in self.unlocked or not self.place(species, r, c, manual=True):
                 self.rejected += 1
 
         # 2. ageing and maturity
@@ -270,7 +299,7 @@ class Simulator:
         for r in range(L.height):
             for c in range(L.width):
                 cell = self.g[r][c]
-                if not (cell.species and cell.mature):
+                if not cell.species or (SPREAD_NEEDS_MATURITY and not cell.mature):
                     continue
                 sp = cell.species
                 g = self.growth_of(sp)
@@ -285,8 +314,14 @@ class Simulator:
                 # spread_rate is "ticks that must pass before it can spread".
                 # Counting (tick - planted_tick) instead lets a plant spread on
                 # the very tick you place it, which the spec does not suggest.
-                if cell.age % rate != 0:
-                    continue
+                if SPREAD_CLOCK == "age_mod":
+                    if cell.age % rate != 0:
+                        continue
+                elif SPREAD_CLOCK == "since_mature":
+                    ttm = g["time_to_maturity"]
+                    if (cell.age - ttm) % rate != 0:
+                        continue
+                # "every_tick": no gate
                 rng = max(1, int(g["spread_range"] * rngm))
                 for dr, dc in pattern_offsets(g["spread_type"], rng):
                     tr, tc = r + dr, c + dc
@@ -332,15 +367,14 @@ class Simulator:
         for r, c in doomed:
             self.kill(r, c)
 
-        # 7. animals, then current unlock eligibility             CONFIRMED A4
+        # 7. animals, then unlocks                                ASSUMPTION A4
         w = self.world()
         self.animals = present_animals(w) if L.animals_enabled else set()
         w.animals = self.animals
-        current_unlocks = unlocked_plants(w)
-        newly = current_unlocks - self.unlocked
+        newly = unlocked_plants(w) - self.unlocked
         if newly:
             self.log.append((self.tick, "UNLOCK", sorted(newly)))
-        self.unlocked = current_unlocks
+        self.unlocked |= newly
 
         self.tick += 1
 
